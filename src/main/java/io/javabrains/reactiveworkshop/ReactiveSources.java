@@ -1,5 +1,6 @@
 package io.javabrains.reactiveworkshop;
 
+import reactor.core.publisher.ConnectableFlux;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -69,5 +70,15 @@ public class ReactiveSources {
         return Flux
                 .just(1, 2, 1, 1, 3, 2, 4, 5, 1)
                 .delayElements(Duration.ofSeconds(1));
+    }
+
+    static public ConnectableFlux<Object> fluxPrintTime() {
+        return Flux.create(fluxSink -> {
+            while (true) {
+                fluxSink.next(System.currentTimeMillis());
+            }
+        }).doOnSubscribe(ignore -> System.out.println("Connecting to source"))
+                .delayElements(Duration.ofSeconds(2))
+                .publish();
     }
 }
