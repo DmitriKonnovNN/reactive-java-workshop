@@ -13,8 +13,9 @@ public class Exercise3 {
         // TODO: Write code here
 
 
-        System.out.println("Press a key to end");
-        System.in.read();
+        var list = ReactiveSources.intNumbersFlux().toStream().toList();
+        System.out.println(list);
+
     }
 
 }

@@ -11,11 +11,21 @@ public class Exercise4 {
         // Print the value from intNumberMono when it emits
         // TODO: Write code here
 
+        ReactiveSources.intNumberMono().log().subscribe(
+            e-> System.out.println(e), 
+            err-> System.out.println(err.getMessage()),
+            ()-> System.out.println("On complete!")
+        );
+
         // Get the value from the Mono into an integer variable
         // TODO: Write code here
 
-        System.out.println("Press a key to end");
-        System.in.read();
+        var integer = ReactiveSources.intNumberMono().block();
+        var integerOptional = ReactiveSources.intNumberMono().blockOptional();
+
+        var userMono = ReactiveSources.userMono().blockOptional();
+        System.out.println(integer);
+        System.out.println(integerOptional);
     }
 
 }

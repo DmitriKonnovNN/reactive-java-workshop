@@ -22,7 +22,9 @@ public class Exercise1 {
         // Print the second and third numbers in intNumbersStream that's greater than 5
         // TODO: Write code here
 
-        StreamSources.intNumbersStream().filter(integer -> integer>5).findFirst().ifPresentOrElse(integer -> System.out.println(integer),()-> System.out.println(-1) );
+        StreamSources.intNumbersStream().filter(integer -> integer>5)
+        .findFirst()
+        .ifPresentOrElse(integer -> System.out.println(integer),()-> System.out.println(-1) );
         //  Print the first number in intNumbersStream that's greater than 5.
         //  If nothing is found, print -1
         // TODO: Write code here
